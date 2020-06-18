@@ -1,0 +1,5 @@
+Hola profesor, hemos realizados cambios debido a problemas.
+tkinter no podia renderizar un mapa de googlemaps
+por lo cual cambiamos toda la app y la incorporamos a una app web como antes se habia dicho.
+Utilizamos python y Flask para la web, base de datos en MySQL.
+esos fueron los cambios realizados obligatoriamente 
