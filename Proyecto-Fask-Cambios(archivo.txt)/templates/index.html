@@ -1,0 +1,65 @@
+{% extends "layout.html" %}
+{% block body %}
+<div class="row">
+  <div class="col-md-5">
+    {% with messages=get_flashed_messages() %}
+    {% if messages %}
+    {% for message in messages %}
+      <div class="alert alert-warning alert-dismissible fade show" role="alert">
+      {{message}}
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+    <div class="card card-body">
+      <form action="/cuenta" method="POST">
+        <div class="form-group">
+          <input type="text" name="usuario" placeholder="Usuario" class="form-control">
+          <input type="password" name="password" placeholder="Password"class="form-control">
+          <button type="submit" class="btn btn-primary btn-block">Acceder</button>
+        </div>
+      </form>
+        <a href="#formularioConductor" class="btn btn-primary btn-block">Registrarse como conductor</a>
+        <a href="#formularioComercio" class="btn btn-primary btn-block">Registrarse como comercio</a>
+      </div>
+      <form action="/agregarConductor" method="POST">
+        <div class="col-mg-7">
+          <div id="formularioConductor" class="card card-body">
+                <div class="form-group">
+                  <input type="text" name="usuario" placeholder="Usuario" class="form-control">
+                  <input type="password" name="password" placeholder="Contraseña" class="form-control">
+                  <input type="text" name="nombre" placeholder="Nombre y Apellido"class="form-control">
+                  <input type="text" name="edad" placeholder="Edad"class="form-control">
+                  <input type="text" name="provincia" placeholder="Provincia"class="form-control">
+                  <input type="text" name="localidad" placeholder="Localidad"class="form-control">
+                  <input type="text" name="domicilio" placeholder="domicilio: calle y nº"class="form-control">
+                  <button type="submit" class="btn btn-success btn-block">Registrar Conductor</button>
+                </div>
+              </div>
+        </div>
+      </form>
+      <form action="/agregarComercio" method="POST">
+        <div class="col-mg-7">
+          <div id="formularioComercio" class="card card-body">
+                <div class="form-group">
+                  <input type="text" name="usuario" placeholder="Usuario O nombre del comercio" class="form-control">
+                  <input type="password" name="password" placeholder="Contraseña" class="form-control">
+                  <input type="text" name="nombre" placeholder="Nombre y Apellido (dueño)"class="form-control">
+                  <input type="text" name="dni" placeholder="DNI (dueño)"class="form-control">
+                  <input type="text" name="provincia" placeholder="Provincia"class="form-control">
+                  <input type="text" name="localidad" placeholder="Localidad"class="form-control">
+                  <input type="text" name="domicilio" placeholder="domicilio: calle y nº"class="form-control">
+                  <button type="submit" class="btn btn-success btn-block">Registrar Comercio</button>
+                </div>
+              </div>
+        </div>
+      </form>
+     </div>
+   </div>
+ </div>
+
+
+{% endblock %}
