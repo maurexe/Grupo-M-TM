@@ -1,0 +1,27 @@
+Informe de Alcance y progreso del proyecto
+
+    La aplicación cosiste, como ya se explicó en el archivo leeme del proyecto, en una app que evite que personas que han bebido, manejen su vehiculo en estado de ebriedad.
+
+    Luego de estudiar la factibilidad de que una persona que esta limitada en sus capacidades a causa del alcohol pueda utilizar correctamente la app, decidimos que sería mejor que estuviera orientada a negocios que quisieran brindar el servicio de CONDUCTOR DESIGNADO. Para esto cada negocio contactaría con coductores de confianza, y con ésto evitar incidentes entre los usuarios y los Conductores Designados, propiamente dicho.
+    
+
+    FUNCIONAMIENTO:
+    
+    1 Registo: 
+        La app cuenta con un logeo como Conductores Designados o como Negocios solicitantes del servicio. Al ingresar como Comercio el solicitante deberá registrarse con sus datos personales, también esta pensado para poder registrarse con las distintas redes sociales (en desarrollo). Para quienes quieran registrarse como Conductores Designados deben ingresar sus datos y permitir el acceso de la app a su ubicacion.
+    
+    2 Solicitud: 
+        Cuando una persona ingresa a un comercio que cuenta con el servicio de CONDUCTOR DESIGNADO, el Comercio controlará el comportamiento del cliente en el local, una vez que haya consumido, solicitará el servicio a través de la app. Cuando el Comercio realiza la Solicitud el CONDUCTOR recbira una advertencia a través de la app inicialmente, con la idea de que sea un msj de WhatsApp (en desarrollo). El CONDUCTOR que recibe la notificacion, será capaz de ACEPTAR o RECHAZARLA, en caso de que sea rechazada, la app enviará la solicitud al CONDUCTOR DESIGNADO mas cercano a la posicion de la solicitud, o bien al mejor calificado.
+    3 Calificaciones(en desarrollo):
+        Una vez aceptada la Solicitud el CONDUCTOR DESIGNADO concurre al lugar pactado a retirar al cliente que dispuso su vehiculo para llevarlo a su destino, en caso de no mediar inconvenientes, el Comercio podrá calificar al CONDUCTOR DESIGNADO.
+    4 Pago del servicio:
+        Para realizar el pago del servicio se realiza una vez terminado el recorrido del CONDUCTOR DESIGNADO hasta el domicilio del cliente. Se realizará a través de Mercado Pago, la integracion del pago se encuentra en proceso de desarrollo.
+
+
+    DESARROLLO:
+
+    Para desarrollar esta app se comenzó programando en Python nativo, pero despues de avanzado el proyecto, convenimos que no era lo mejor, debido a que no podíamos renderizar mapas de Google Maps en tkinter. Por lo tanto decidimos pasar a una app web, con Python y Flask para la web, y la base de datos en MySQL.
+
+    Para la incorporacion de mapas, optamos por recurrir a GoogleDevelopers para conseguir las APIs de los mapas necesarios, con la integracion de mapStyle para darle estilos personalizados a dichos mapas.
+
+    
