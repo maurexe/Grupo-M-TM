@@ -1,14 +1,12 @@
 from flask import Flask, render_template, request,redirect, url_for, flash
 from flask_mysqldb import MySQL
-from flask_googlemaps import GoogleMaps
-from flask_googlemaps import Map
 import mysql.connector
 app= Flask(__name__)
 
 db = mysql.connector.connect(
    host="localhost",
    user="root",
-   passwd="",
+   passwd="firu2020",
    database='cuentas'
 )
 mysql = MySQL(app)
@@ -33,7 +31,7 @@ def verificar():
                 sql="select * from cuentasconductor where id='{}'".format(usuario)
                 cursor.execute(sql)
                 datos=cursor.fetchall()
-                return render_template("cuenta.html", id = usuario, datos=datos)
+                return render_template("cuenta.html", id = usuario, datos=datos, tipo="conductor")
             else:#si devuelve vacio es porque no encontro cuenta de conductor y va a buscar en la tabla de cuentas de comercio
                 sql="select id, password from cuentascomercio where id='{}' and password='{}'".format(usuario, password)
                 cursor.execute(sql)
@@ -42,13 +40,13 @@ def verificar():
                     sql="select * from cuentascomercio where id='{}'".format(usuario)
                     cursor.execute(sql)
                     datos=cursor.fetchall()
-                    return render_template("cuenta.html", id = usuario, datos=datos)
+                    return render_template("cuenta.html", id = usuario, datos=datos, tipo="comercio",  )
                 else:
                     flash("usuario y/o password incorrecto")
-                    return redirect(url_for("Index"))
+                    return render_template("index.html", tipoMensj="alert alert-warning alert-dismissible fade show")
         else:
             flash("usuario y/o password incorrecto")
-            return redirect(url_for("Index"))
+            return render_template("index.html", tipoMensj="alert alert-warning alert-dismissible fade show")
 @app.route("/agregarConductor", methods=["POST"])
 def add_conductor():
     try:
@@ -62,17 +60,17 @@ def add_conductor():
             domicilio=request.form["domicilio"]
             if int(edad) < 18:
                 flash("ERES MENOR DE EDAD NO TE PUEDES REGISTRAR.")
-                return redirect(url_for("Index"))
+                return render_template("index.html", tipoMensj="alert alert-warning alert-dismissible fade show")
             else:
                 cursor=db.cursor()
                 cursor.execute("insert into cuentasconductor values (%s, %s, %s, %s, %s, %s, %s)",
                 (usuario, nombre, password, edad, provincia, localidad, domicilio))
                 db.commit()
                 flash("CONDUCTOR AGREGADO SATISFACTORIAMENTE")
-                return redirect(url_for("Index"))
+                return render_template("index.html", tipoMensj="alert alert-success alert-dismissible fade show")
     except:
         flash("AH OCURRIDO UN ERROR, INTENTE NUEVAMENTE.")
-        return redirect(url_for("Index"))
+        return render_template("index.html", tipoMensj="alert alert-warning alert-dismissible fade show")
 @app.route("/agregarComercio", methods=["POST"])
 def add_comercio():
     try:
@@ -89,10 +87,11 @@ def add_comercio():
             (usuario, dni, nombre, password, provincia, localidad, domicilio))
             db.commit()
             flash("COMERCIO AGREGADO SATISFACTORIAMENTE")
-            return redirect(url_for("Index"))
+            return render_template("index.html", tipoMensj="alert alert-success alert-dismissible fade show")
     except:
         flash("AH OCURRIDO UN ERROR, INTENTE NUEVAMENTE.")
-        return redirect(url_for("Index"))
+        return render_template("index.html", tipoMensj="alert alert-warning alert-dismissible fade show")
 
 if __name__ == "__main__":
     app.run(port = 3000, debug = True)
+
