@@ -5,7 +5,7 @@
     {% with messages=get_flashed_messages() %}
     {% if messages %}
     {% for message in messages %}
-      <div class="alert alert-warning alert-dismissible fade show" role="alert">
+      <div class="{{tipoMensj}}" role="alert">
       {{message}}
       <button type="button" class="close" data-dismiss="alert" aria-label="Close">
         <span aria-hidden="true">&times;</span>
@@ -38,7 +38,7 @@
                   <input type="text" name="domicilio" placeholder="domicilio: calle y nº"class="form-control">
                   <button type="submit" class="btn btn-success btn-block">Registrar Conductor</button>
                 </div>
-              </div>
+            </div>
         </div>
       </form>
       <form action="/agregarComercio" method="POST">
